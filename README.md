@@ -17,5 +17,5 @@ To get started, follow these steps:
 - Credits to [The Coding Train]([https://www.youtube.com/@project_jdm](https://www.youtube.com/@TheCodingTrain)) for inspiration and ideas. Enjoy their beautiful and detailed video: [ASCII text images](https://www.youtube.com/watch?v=55iwMYv8tGI&t=1116s).
 
 ## Author
-Varun C
+[Varun](https://github.com/Vaarun-C)
 Have fun! :)
