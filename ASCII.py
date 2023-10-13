@@ -84,4 +84,3 @@ while True:
             img.show()
         else:
             print("No screenshot available.")
-
