@@ -27,7 +27,7 @@ for i in range(10):
         break
 
     image_gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
-    ret, thresholded = cv.threshold(image_gray, 10 , 255, cv.THRESH_BINARY)
+    ret, thresholded = cv.threshold(image_gray, 5 , 255, cv.THRESH_TOZERO_INV)
 
     for i, row in enumerate(image_gray):
         for j, column in enumerate(row):
