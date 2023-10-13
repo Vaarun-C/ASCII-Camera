@@ -12,8 +12,10 @@ cap = cv.VideoCapture(0)
 cap.set(cv.CAP_PROP_FRAME_WIDTH, 35)
 cap.set(cv.CAP_PROP_FRAME_HEIGHT, 20)
 
+
 def map_color_value(old_value):
     return math.floor(((old_value - 0) / (255 - 0)) * (len(pixel_map)-1 - 0) + 0)
+
 
 for i in range(256):
     pixel_hash.append(pixel_map[map_color_value(i)])
@@ -25,6 +27,7 @@ for i in range(10):
         break
 
     image_gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
+    ret, thresholded = cv.threshold(image_gray, 5 , 255, cv.THRESH_TOZERO_INV)
 
     for i,row in enumerate(image_gray):
         for j,column in enumerate(row):
