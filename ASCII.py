@@ -30,7 +30,7 @@ for i in range(10):
         for j,column in enumerate(row):
             r,g,b = image[i][j]
             #print(pixel_map[map_color_value(column)], end="")
-            print(f"\x1b[38;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
+            print(f"\x1b[48;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
 
         print()
 
