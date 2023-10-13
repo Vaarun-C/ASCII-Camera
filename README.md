@@ -20,3 +20,5 @@ To get started, follow these steps:
 [Varun](https://github.com/Vaarun-C)
 
 Have fun! :)
+
+**PLEASE SEE: There's a for loop which limits it to 10 frames. Please switch that out for `while True:` to enable forever.**
