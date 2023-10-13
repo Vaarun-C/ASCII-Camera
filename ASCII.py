@@ -20,8 +20,7 @@ def map_color_value(old_value):
 for i in range(256):
     pixel_hash.append(pixel_map[map_color_value(i)])
 
-print(pixel_hash)
-for i in range(5):
+for i in range(10):
 
     ret, image = cap.read()
     if image is None:
