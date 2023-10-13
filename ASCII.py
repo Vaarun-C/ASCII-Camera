@@ -29,11 +29,11 @@ for i in range(10):
     image_gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
     ret, thresholded = cv.threshold(image_gray, 5 , 255, cv.THRESH_TOZERO_INV)
 
-    for i, row in enumerate(thresholded):
-        for j, column in enumerate(row):
-            r, g, b = image[i][j]
-            # print(pixel_map[map_color_value(column)], end="")
-            print(f"\x1b[38;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
+    for i,row in enumerate(image_gray):
+        for j,column in enumerate(row):
+            r,g,b = image[i][j]
+            #print(pixel_map[map_color_value(column)], end="")
+            print(f"\x1b[48;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
 
         print()
 
