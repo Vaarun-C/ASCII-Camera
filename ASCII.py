@@ -4,7 +4,15 @@ import os
 import sys
 #library keyboard please import
 import keyboard
+import numpy as np
 
+#library for ss
+import pyautogui
+#library for image
+#from PIL import Image,text_to_image
+#from Screenshot import Screenshot_clipping
+f = open("color.txt",'w')
+z = open("char.txt","w")
 
 os.system("clear|cls")
 
@@ -35,8 +43,11 @@ for i in range(256):
             for i,row in enumerate(image_gray):
                 for j,column in enumerate(row):
                     r,g,b = image[i][j]
+                    #print(r,g,b)
                     #print(pixel_map[map_color_value(column)], end="")
-                    print(f"\x1b[38;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
+                    print(f"\x1b[48;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
+                    f.writelines(f"[{r},{g},{b}],")
+                    z.writelines(f"[{pixel_hash[column]}]")
 
                 print()
 
@@ -46,8 +57,31 @@ for i in range(256):
             if keyboard.read_key()=="b":
                 cap.release()
     #cap.pause()
-                cv.destroyAllWindows()
+                #cv.destroyAllWindows()
 #calling the capture function when keyboard click event for button a happens
-if keyboard.read_key() == 'a':
-    s()
+def ss():
+
+    image = pyautogui.screenshot() 
+    image = cv.cvtColor(np.array(image), cv.COLOR_BGR2RGB)
+    cv.imwrite("image1.png", image) 
+
+    
+def v():
+    image = cv.imread('image1.png',cv.COLOR_BGR2RGB)
+    cv.imshow('pic',image)
+    cv.waitKey(0)
+while True:
+    if keyboard.read_key() == 'a':
+        s()
+    elif keyboard.read_key()=='s':
+        ss()
+    elif keyboard.read_key()=='v':
+        v()
+
+
+
+
+
+
+
 
