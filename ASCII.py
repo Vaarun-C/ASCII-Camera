@@ -46,10 +46,11 @@ for i in range(256):
                     #print(r,g,b)
                     #print(pixel_map[map_color_value(column)], end="")
                     print(f"\x1b[48;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
-                    f.writelines(f"[{r},{g},{b}],")
-                    z.writelines(f"[{pixel_hash[column]}]")
+                    f.writelines(f"[{r},{g},{b}],\n")
+                    z.writelines(f"[{pixel_hash[column]}]\n")    
 
                 print()
+
 
             sys.stdout.write(f"\033[{0};{0}H")
             sys.stdout.flush()
@@ -70,6 +71,19 @@ def v():
     image = cv.imread('image1.png',cv.COLOR_BGR2RGB)
     cv.imshow('pic',image)
     cv.waitKey(0)
+    f = open("color.txt",'r')
+    z = open("char.txt",'r')
+    #data=f.readlines()
+    #dat=z.readlines()
+    for i in f:
+        cr = i
+        for j in z:
+            ch =j
+            print(f"\x1b[48;2;{i[0]};{i[1]};{i[2]}m{j}\x1b[0m", end='')
+
+        
+        
+        
 while True:
     if keyboard.read_key() == 'a':
         s()
