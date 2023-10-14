@@ -5,8 +5,10 @@ import sys
 import numpy as np
 from PIL import Image
 from io import BytesIO
+import keyboard
 
-os.system("clear")
+
+os.system("clear|cls")
 
 pixel_map = r"$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:,\"^`'. "
 pixel_hash = []
@@ -40,47 +42,33 @@ input()
 
 os.system("clear")  # Clear the screen after user input
 
-while True:
-    key = input("Press a key: ")
+def s():
+    while True :
+        ret, image = cap.read()
+        if image is None:
+            break
 
-    if key == 'Q' or key == 'q':
-        if cap is not None:
-            cap.release()
-        cv.destroyAllWindows()
-        break
+        image_gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
 
-    if key == 'W' or key == 'w':
-        cap = cv.VideoCapture(0)
-        cap.set(cv.CAP_PROP_FRAME_WIDTH, 35)
-        cap.set(cv.CAP_PROP_FRAME_HEIGHT, 20)
+        for i, row in enumerate(image_gray):
+            for j, column in enumerate(row):
+                r, g, b = image[i][j]
+                print(f"\x1b[38;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
 
-        for i in range(10):
-            ret, image = cap.read()
-            if image is None:
-                break
-
-            image_gray = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
-
-            for i, row in enumerate(image_gray):
-                for j, column in enumerate(row):
-                    r, g, b = image[i][j]
-                    print(f"\x1b[38;2;{r};{g};{b}m{pixel_hash[column]}\x1b[0m", end='')
-
-                print()
+            print()
 
             sys.stdout.write(f"\033[{0};{0}H")
             sys.stdout.flush()
+            if keyboard.read_key()=="b":
+                cap.release()
+    #cap.pause()
+                cv.destroyAllWindows()
 
-    if key == 'S' or key == 's':
-        if cap is not None:
-            ret, image = cap.read()
-            if image is not None:
-                screen_shot = np.copy(image)
-                print("Screenshot taken.")
+if keyboard.read_key() == 'a':
+    s()
 
-    if key == 'V' or key == 'v':
-        if screen_shot is not None:
-            img = Image.fromarray(cv.cvtColor(screen_shot, cv.COLOR_BGR2RGB))
-            img.show()
-        else:
-            print("No screenshot available.")
+'''else:
+    #while True:
+    cap.release()
+    #cap.pause()
+    cv.destroyAllWindows()'''
