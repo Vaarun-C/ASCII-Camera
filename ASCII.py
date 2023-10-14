@@ -49,8 +49,3 @@ for i in range(256):
 if keyboard.read_key() == 'a':
     s()
 
-'''else:
-    #while True:
-    cap.release()
-    #cap.pause()
-    cv.destroyAllWindows()'''
